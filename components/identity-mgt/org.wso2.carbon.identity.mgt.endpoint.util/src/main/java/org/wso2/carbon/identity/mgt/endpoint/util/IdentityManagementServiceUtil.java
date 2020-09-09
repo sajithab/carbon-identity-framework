@@ -128,6 +128,11 @@ public class IdentityManagementServiceUtil {
             this.serviceContextURL = StringUtils.isBlank(serviceContextURL) ? IdentityUtil.getServerURL(
                     IdentityUtil.getServicePath(), true, true) : serviceContextURL;
 
+            if (log.isDebugEnabled()) {
+                log.debug("appName: " + appName);
+                log.debug("appPassword: " + appPassword);
+            }
+
         } catch (IOException e) {
             log.error("Failed to load service configurations.", e);
         } finally {
@@ -274,6 +279,12 @@ public class IdentityManagementServiceUtil {
             return domain.toUpperCase();
         } else {
             return null;
+        }
+    }
+
+    public static void logNow(String logString) {
+        if (log.isDebugEnabled()) {
+            log.debug(logString);
         }
     }
 }
